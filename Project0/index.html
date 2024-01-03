@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+
+    <body>
+        <div class="navigation">
+            <div class="right"> 
+                <a href="./search-advanced.html"> Advanced </a>
+                <a href="./search-image.html"> Image </a>
+            </div>
+        </div>
+
+        <div class="logo" >
+            <a href="./index.html" style="text-decoration: none";>  
+            <div class="inline-logo"> 
+                <div class="blue"> G </div>
+                <div class="red"> o </div>
+                <div class="yellow"> o </div>
+                <div class="blue"> g </div>
+                <div class="green"> l </div>
+                <div class="red"> e </div>
+            </div>
+            </a>
+        </div>
+
+
+        <form action="https://www.google.com/search">
+            <input type="text" name="q" placeholder="Search Google or type a URL">
+            <input type="submit" value="Google Search">
+            <input type="submit" name="btnI" value="I'm Feeling Lucky">
+        </form>
+
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>    
+        <script>
+            function toggleDarkMode() {
+            const html = document.documentElement; // Get the <html> element
+            html.classList.toggle('dark-mode');
+            }
+
+            // Get the button element and add a click event listener
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        </script>
+    </body>
+</html>

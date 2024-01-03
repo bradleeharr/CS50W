@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+
+    </head>
+
+
+    <body>
+        <div class="navigation">
+            <div class="right"> 
+                <a href="./index.html"> Default Search </a>
+                <a href="./search-image.html"> Image </a>
+            </div>
+        </div>
+
+        
+        <div class="logo" >
+            <a href="./index.html" style="text-decoration: none";>  
+            <div class="inline-logo"> 
+                <div class="blue"> G </div>
+                <div class="red"> o </div>
+                <div class="yellow"> o </div>
+                <div class="blue"> g </div>
+                <div class="green"> l </div>
+                <div class="red"> e </div>
+                <div class="p100px">Advanced</div>
+            </div>
+            </a>
+        </div>
+        
+        
+    
+        <div class="advanced-search-terms">
+            <form action="https://www.google.com/search">
+                <div class="inputline"> Find Pages with... </div>  <br/>
+                <div class="inputline"> 
+                    <div class="left"> All these words: </div>  
+                    <div class="right"> <input type="advanced-text" name="as_q" placeholder="Type words here"> </div>
+                </div>
+                <div class="inputline">
+                    <div class="left"> This exact word or phrase </div>
+                    <input type="advanced-text" name="as_epq" placeholder="Type phrase here"> 
+                </div>
+                <div class="inputline">
+                     <div class="left"> Any of these words </div> 
+                     <input type="advanced-text" name="as_oq" placeholder="Type words here"> 
+                </div>
+                <div class="inputline"> 
+                    <div class="left"> None of these words </div> 
+                    <div class="right"> <input type="advanced-text" name="as_eq" placeholder="Type words here"> </div> 
+                </div>
+                <div class="inputline"> 
+                    <input type="submit" value="Google Search"> 
+                </div>
+            </form>
+        </div>
+
+
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>    
+        <script>
+            function toggleDarkMode() {
+            const html = document.documentElement; // Get the <html> element
+            html.classList.toggle('dark-mode');
+            }
+
+            // Get the button element and add a click event listener
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        </script>
+    </body>
+</html>

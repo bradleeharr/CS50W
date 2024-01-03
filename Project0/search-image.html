@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Image Search</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+
+    </head>
+
+    <body>
+
+
+
+        <header>
+            <div class="navigation">
+            <div class="right"> 
+                <a href="./index.html"> Default Search </a>
+                <a href="./search-advanced.html"> Advanced </a>
+            </div>
+        </header>
+
+
+                
+        <div class="logo" >
+            <a href="./index.html" style="text-decoration: none";>  
+            <div class="inline-logo"> 
+                <div class="blue"> G </div>
+                <div class="red"> o </div>
+                <div class="yellow"> o </div>
+                <div class="blue"> g </div>
+                <div class="green"> l </div>
+                <div class="red"> e </div>
+                <div class="p100px">Images</div>
+            </div>
+            </a>
+        </div>
+
+
+        <form action="https://www.google.com/search">
+            <input type="text" name="tbm" value="isch" style="display:None">
+            <input type="text" name="q" placeholder="Search Google or type a URL">
+            <input type="submit" value="Google Search">
+        </form>
+
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>    
+        <script>
+            function toggleDarkMode() {
+            const html = document.documentElement; // Get the <html> element
+            html.classList.toggle('dark-mode');
+            }
+
+            // Get the button element and add a click event listener
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        </script>
+    </body>
+</html>

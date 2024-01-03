@@ -1,0 +1,183 @@
+:root {
+  --background-color: #111;
+  --form-color: #222;
+  --text-color: #ddd;
+  --link-color: #ddffdd; /* Adjust link color for dark mode as an example */
+  --link-color-hover: #cceecc; /* Adjust link color for dark mode as an example */
+
+  --red: #ddd;
+  --blue: #ddd;
+  --yellow: #ddd;
+  --green: #ddd;
+
+  --button-color:#222;
+  --button-color-pressed: #333444;
+
+}
+
+
+  .dark-mode {
+    --background-color: #fff;
+    --form-color: #eee;
+    --text-color: #333;
+    --link-color: #007bff;
+    --button-color:#007bee;
+    --button-color-pressed: #229dff;
+
+    --red: red;
+    --blue: blue;
+    --yellow: yellow;
+    --green: green;
+  }
+
+  /* Dark mode */
+
+  /* Reset some default styles to ensure consistent rendering */
+  body, h1, p, ul, li {
+      margin: 0;
+      padding: 0;
+    }
+    
+  /* Style the body for basic layout and background color */
+  body {
+    font-family: Roboto, arial, sans-serif;
+    font-size: 14px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
+  }
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--link-color-hover)
+  }
+
+  .navigation,a {
+    padding: 16px;
+    margin-top: 10px;
+    font-size: 20px;
+
+  }
+  .right {
+    text-align: right;
+  }
+  .left {
+    text-align: left;
+  }
+  .red {
+    color: var(--red);
+  }
+  .blue {
+    color: var(--blue);
+  }
+  .green {
+    color: var(--green);
+  }
+  .yellow {
+    color: var(--yellow);
+  }
+  
+  .logo {
+    margin-top: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    
+  }
+  .inline-logo {
+    display: flex;
+    text-decoration: none;
+    font-size: 120px;
+  }
+  .p100px {
+    font-size: 50px;
+  }
+
+
+
+  /* Style the form container */
+  form {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border-radius: 4px;
+  }
+  
+  /* Style the text input field */
+  input[type="text"] {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    width: 80%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    padding: 10px 30px;
+    border: 1px solid var(--text-color);
+    border-radius: 18px;
+    margin-bottom: 20px;
+    height: 100%;
+  }
+  
+  input[type="submit"] {
+    background-color: var(--button-color);
+    color: #fff;
+    border: none;
+    border-radius: 1px;
+    padding: 15px 40px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: var(--button-color-pressed);
+  }
+
+  input[type="advanced-text"] {
+    color: var(--text-color);
+    background-color: var(--form-color);
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+
+    padding: 10px 30px;
+    margin-bottom: 20px;
+    height: 100%;
+  }
+
+
+  button {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: var(--background-color);
+    color: var(--text-color)
+  }
+
+  div.advanced-search-terms {
+    font-size: 20px;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  div.advanced-search-terms form {
+
+  }
+  
+  .inputline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inputline input {
+    width: 400px;
+  }
