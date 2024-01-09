@@ -130,3 +130,19 @@ def newpage(request):
 
     print("GETTING NEW PAGE")
     return render(request, "encyclopedia/newpage.html", {})
+
+def editpage(request, entry_name):
+    entry_content = util.get_entry(entry_name)
+    if request.method == 'POST':
+        article_content = request.POST.get('content', '')
+        save_entry(title=entry_name, content=article_content)
+        print("SAVED EDITED PAGE:")
+        return entry_view(request, entry_name)
+
+    #return redirect('entry_detail', entry_detail=article_name)  # Replace 'page_detail' with your page detail view name
+
+    print("GETTING NEW PAGE")
+    return render(request, "encyclopedia/editpage.html", {
+        "title" : entry_name,
+        "content": entry_content
+    })

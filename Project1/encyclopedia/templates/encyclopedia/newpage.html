@@ -14,10 +14,4 @@
         <button type="submit">Create New Article</button>
     </form>
 
-    <ul>
-        {% for entry in entries %}
-            <li><a href="{% url 'entry_detail' entry_name=entry %}">{{ entry }}</a></li>
-        {% endfor %}
-    </ul>
-
 {% endblock %}
