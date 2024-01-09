@@ -5,6 +5,7 @@ HTML is a markup language that can be used to define the structure of a web page
 * headings
 * paragraphs
 * lists
+  * Indented Lists
 * links
 * and more!
 
