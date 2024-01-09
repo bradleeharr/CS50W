@@ -97,9 +97,17 @@ def entry_view(request, entry_name):
     })
 
 
-def search(request, search_name):
-    return render(request, "encyclopedia/layout.html", {
-        "markdown": "HIHIHI SEARCH PAGE HERE"
+def search(request):
+    query = request.GET.get('q', '')
+    print("SEARCHING")
+    results = []
+    for entry in util.list_entries():
+        if query.lower() in entry.lower():
+            results.append(entry)
+    print(results)
+    return render(request, "encyclopedia/search.html", {
+        "entries": results,
+        "query": query
     })
 
 def random_page(request):
