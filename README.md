@@ -14,11 +14,11 @@ This repository contains my personal attempts at solutions for the projects assi
 - **Description**: A Wikipedia-like online encyclopedia.
 - **Technologies Used**: Django, Python, HTML, CSS.
 
-<!-- ### Project 2: Commerce
+### Project 2: Commerce
 - **Description**: An eBay-like e-commerce auction site.
 - **Technologies Used**: Django, Python, HTML, CSS, JavaScript.
 
-### Project 3: Mail
+<!--### Project 3: Mail
 - **Description**: A front-end for an email client that makes API calls to send and receive emails.
 - **Technologies Used**: JavaScript, HTML, CSS.
 
