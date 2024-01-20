@@ -1,5 +1,5 @@
 # CS50W Projects 
-https://bradleeharr.github.io/CS50W/
+[https://bradleeharr.github.io/CS50W/](https://bradleeharr.github.io/CS50W/)
 
 ## Introduction
 
