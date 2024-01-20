@@ -18,6 +18,7 @@ This repository contains my personal attempts at solutions for the projects assi
 ### [Project 2: Commerce](https://bradleeharr.github.io/CS50W/Project2)
 - **Description**: An eBay-like e-commerce auction site.
 - **Technologies Used**: Django, Python, HTML, CSS, JavaScript.
+- Account Registration, Login, Profile Management
 
 <!--### Project 3: Mail
 - **Description**: A front-end for an email client that makes API calls to send and receive emails.
