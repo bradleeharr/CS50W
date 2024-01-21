@@ -75,6 +75,12 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
+def listing(request, listing_title):
+    listing = AuctionListing.objects.filter(title=listing_title)
+    return render(request, f"auctions/listing.html", {
+        "listing": listing.get()
+    })
+
 @login_required
 def new_listing(request):
     if request.method == "POST":
@@ -92,3 +98,4 @@ def new_listing(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, f"auctions/new_listing.html")
+
