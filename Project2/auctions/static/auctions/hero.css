@@ -1,0 +1,144 @@
+/* */
+:root {
+--background-color: #111;
+--text-color: #fff;
+--blend-mode: darken;
+}
+
+/*
+:root {
+  --background-color: #fff;
+  --text-color: #000;
+  --blend-mode: screen;
+} */
+
+header {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px 0px 0px 0px;
+}
+
+.flex-nav {
+    display: flex;
+    justify-content: center;
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+
+}
+
+#elite {
+  position: relative;
+  font-size: 3rem;
+  align-items: flex-end;
+  color: var(--text-color);
+}
+
+.pops {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: var(--blend-mode);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#elite > span:first-of-type {
+  display: inline-block;
+}
+
+#elite > span:last-of-type {
+  position: absolute;
+
+  opacity: 0.75;
+}
+
+#elite > span:nth-of-type(2) {
+  display: inline;
+  background: linear-gradient(to right, #ff4e50, #fc913a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: white; /* Set the text color to white */
+}
+
+
+@keyframes pop {
+  50% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--dx), var(--dy));
+  }
+}
+
+.pop {
+  height: var(--size, 80%);
+  aspect-ratio: 1;
+  background: radial-gradient(hsl(var(--h) 100% 70%) 25%, transparent 80%);
+  position: absolute;
+  display: inline-block;
+  animation: scale var(--s, 2s) var(--d, 0s) infinite alternate, drift var(--dd, 5s) infinite linear;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  scale: 0;
+  translate: -80% -50%;
+  filter: blur(2px);
+  left: var(--x);
+  top: var(--y);
+  transform: scale(var(--scale)) translate(-50%, -50%);
+}
+
+.pop:nth-of-type(1) {
+  --x: 10%;
+  --y: 25%;
+  --dx: 5px;
+  --dy: 10px;
+  --scale: 0.5;
+  --d: -0.25s;
+  --dd: 7s;
+}
+
+.pop:nth-of-type(2) {
+  --x: 20%;
+  --y: 55%;
+  --dx: -5px;
+  --dy: -15px;
+  --scale: 0.7;
+  --d: -0.5s;
+  --dd: 4s;
+}
+
+.pop:nth-of-type(3) {
+  --x: 65%;
+  --y: 75%;
+  --h: 210;
+  --s2: 3;
+  --d: -0.5s;
+  --s: 3s;
+}
+.pop:nth-of-type(4) {
+  --x: 85%;
+  --y: 15%;
+  --h: 320;
+  --s2: 5;
+  --d: -1s;
+  --s: 2s;
+}
+.pop:nth-of-type(5) {
+  --x: 15%;
+  --y: 100%;
+  --h: 40;
+  --s2: 3;
+  --d: -1s;
+  --s: 2s;
+}
+
+@keyframes scale {
+  to {
+    scale: var(--s2);
+  }
+}

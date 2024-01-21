@@ -2,6 +2,14 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-
-    TODO
+    {% for listing in listings %}
+    <div class="listing">
+        <div class="listing-header">
+            <div class="listing-title" style="font-size: 30px"> {{listing.title}} </div>
+            <div class="listing-user"> By: {{listing.user}} </div>
+        </div>
+        <div class="listing-content"> {{listing.content}} </div>
+        <div class="listing-price" style="font-size: 30px">${{listing.price}}.00</div>
+    </div>
+    {% endfor %}
 {% endblock %}

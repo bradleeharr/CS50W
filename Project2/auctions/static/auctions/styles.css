@@ -1,3 +1,44 @@
 body {
-    padding: 10px;
+    padding: 0px;
+    text-align: center;
+    background-color: #ddd;
+    color: black;
 }
+
+a {
+    color: #f0f;
+}
+
+a:hover {
+    color: #2dd;
+}
+
+form {
+max-width: 800px;
+margin: auto;
+}
+
+.message {
+color: #f0f;
+font-size: 24px;
+}
+
+.listing {
+background-color: #111;
+max-width: 800px;
+margin: 20px auto;
+padding: 20px;
+color: white;
+}
+
+.listing:hover {
+    background-color: #727; /* Slightly lighter background on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+}
+
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+

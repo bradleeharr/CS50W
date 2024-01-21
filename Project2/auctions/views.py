@@ -3,12 +3,19 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
-from .models import User
+from .models import User, AuctionListing
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listings = AuctionListing.objects.all()
+    #print(listings)
+    #print(listings[0].title)
+    #print(listings[0].user)
+    return render(request, "auctions/index.html", {
+        "listings" : listings
+    })
 
 
 def login_view(request):
@@ -31,6 +38,7 @@ def login_view(request):
         return render(request, "auctions/login.html")
 
 
+@login_required()
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
@@ -57,7 +65,30 @@ def register(request):
             return render(request, "auctions/register.html", {
                 "message": "Username already taken."
             })
+        except ValueError:
+            return render(request, "auctions/register.html", {
+                "message": "Make sure all fields are filled out correctly."
+            })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+
+@login_required
+def new_listing(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        price = request.POST["price"]
+        content = request.POST["content"]
+        # Attempt to create new user
+        try:
+            listing = AuctionListing(user=request.user, price=price, title=title, content=content)
+            listing.save()
+        except IntegrityError:
+            return render(request, "auctions/new_listing.html", {
+                "message": "Listing already taken."
+            })
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, f"auctions/new_listing.html")
