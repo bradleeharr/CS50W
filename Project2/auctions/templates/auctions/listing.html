@@ -1,24 +1,40 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <button>Add to Watchlist</button>
+
+    <div class="top-buttons">
+    <!-- Add to Watchlist Button -->
+    {% if user.is_authenticated %}
+    <form action ="{% url 'add_to_watchlist' listing_title=listing.title %}" method="post" >
+    {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Add to Watchlist">
+    </form>
+    {% endif %}
+
+    <!-- Remove Listing Button -->
+    {% if user.is_authenticated %}
     <form action="{% url 'remove_listing' listing_title=listing.title %}" method="post">
     {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" type="number" step=".01" name="amount" placeholder="Amount">
-        </div>
         <input class="btn btn-primary" type="submit" value="Remove Listing">
     </form>
+    {% endif %}
+    </div>
+
+    <h2>{{listing.title}}</h2>
+
+    <!-- Display Image -->
     {% if listing.image  %}
         <div class="listing-image">
                 <img src="{{ listing.image.url }}" alt="Image for {{ listing.title }}" />
         </div>
-        {% endif %}
+    {% endif %}
 
+    {{listing.description}}
 
-
+    <!-- Add Bid -->
     {% if user.is_authenticated %}
     <h3> Add Bid </h3>
+    <h1> {{ message }}</h1>
     <form action="{% url 'new_bid' listing_title=listing.title %}" method="post">
     {% csrf_token %}
         <div class="form-group">
@@ -26,8 +42,10 @@
         </div>
         <input class="btn btn-primary" type="submit" value="Submit Bid">
     </form>
+    {% endif %}
 
-
+    <!-- Add Comment -->
+    {% if user.is_authenticated %}
     <h3> Add Comment </h3>
     <form action="{% url 'new_comment' listing_title=listing.title %}" method="post">
         {% csrf_token %}
@@ -41,6 +59,5 @@
     </form>
     {% endif %}
 
-    <h2>{{listing.title}}</h2>
-        {{listing.content}}
+
 {% endblock %}

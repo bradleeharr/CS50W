@@ -1,5 +1,4 @@
 body {
-    padding: 0px;
     text-align: center;
     background-color: #ddd;
     color: black;
@@ -16,6 +15,7 @@ a:hover {
 form {
 max-width: 800px;
 margin: auto;
+padding: 10px;
 }
 
 .message {
@@ -42,6 +42,12 @@ color: white;
   padding: 10px;
 }
 
+.listing-image {
+width: 1000px;
+max-width: 90%;
+margin: auto;
+}
+
 img {
 display: flex;
 width: 100%; }
@@ -50,4 +56,9 @@ textarea {
 max-width: 800px;
  display: flex;
  width: 100%;
+ }
+
+ .top-buttons{
+ display: flex;
+ justify-content: space-around;
  }
