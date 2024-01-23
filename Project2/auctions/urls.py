@@ -11,6 +11,10 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("new_listing", views.new_listing, name="new_listing"),
     path("listing/<str:listing_title>", views.listing, name="listing"),
+    path("listing/<str:listing_title>/new_bid", views.listing, name="new_bid"),
+    path("listing/<str:listing_title>/new_comment", views.listing, name="new_comment"),
+    path("listing/<str:listing_title>/remove_listing", views.listing, name="remove_listing"),
+
 ]
 
 # If Debug Mode serve images from Django project

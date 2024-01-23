@@ -2,9 +2,45 @@
 
 {% block body %}
     <button>Add to Watchlist</button>
-    <button> Remove Listing</button>
-    <form>Add Bid</form>
-    <form>Add Comment</form>
+    <form action="{% url 'remove_listing' listing_title=listing.title %}" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="number" step=".01" name="amount" placeholder="Amount">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Remove Listing">
+    </form>
+    {% if listing.image  %}
+        <div class="listing-image">
+                <img src="{{ listing.image.url }}" alt="Image for {{ listing.title }}" />
+        </div>
+        {% endif %}
+
+
+
+    {% if user.is_authenticated %}
+    <h3> Add Bid </h3>
+    <form action="{% url 'new_bid' listing_title=listing.title %}" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="number" step=".01" name="amount" placeholder="Amount">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit Bid">
+    </form>
+
+
+    <h3> Add Comment </h3>
+    <form action="{% url 'new_comment' listing_title=listing.title %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <textarea id="content" name="content" rows="5" cols="33"> </textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit Comment">
+    </form>
+    {% endif %}
+
     <h2>{{listing.title}}</h2>
         {{listing.content}}
 {% endblock %}
