@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from ..models import User, AuctionListing, Bid
+from ..models import User, AuctionListing, Bid, WatchlistItem
 
 
 @login_required()
@@ -74,11 +74,19 @@ def remove_listing(request, listing_title):
         return HttpResponseRedirect(reverse("index"))
     pass
 
+
 @login_required()
 def add_to_watchlist(request, listing_title):
     if request.method == "POST":
         listing = AuctionListing.objects.get(title=listing_title)
         try:
+            new_watchlist_item = WatchlistItem(user=request.user, listing=listing)
+            new_watchlist_item.save()
+            return render(request, "auctions/listing.html", {
+                "listing" : listing,
+                "message": "Added to watchlist."
+            })
+            pass
         except IntegrityError as e:
             traceback.print_exc()
             return render(request, "auctions/listing.html", {
@@ -90,3 +98,19 @@ def add_to_watchlist(request, listing_title):
             "message": "An error occurred. Please try again."
         })
     pass
+
+
+def watchlist(request):
+    listings_with_bids = []
+    listings = AuctionListing.objects.all()
+    watchlist_items = WatchlistItem.objects.filter(user=request.user)
+    for item in watchlist_items:
+        listing = item.listing
+        print(listing)
+        highest_bid = Bid.objects.filter(listing=listing)
+        print(highest_bid)
+        highest_bid = highest_bid.order_by('-amount').first()
+        listings_with_bids.append((listing, highest_bid))
+    return render(request, "auctions/watchlist.html", {
+        "listings": listings_with_bids
+    })

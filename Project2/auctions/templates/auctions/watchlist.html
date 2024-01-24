@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Watchlist Listings</h2>
+    {% for listing, current_bid in listings %}
+    <a href="{% url 'listing' listing_title=listing.title %}" style="text-decoration: none">
+    <div class="listing">
+        <div class="listing-header">
+            <div class="listing-title" style="font-size: 30px"> {{listing.title}} </div>
+            <div class="listing-user"> By: {{listing.user}} </div>
+        </div>
+
+        {% if listing.image  %}
+        <div class="listing-image">
+                <img src="{{ listing.image.url }}" alt="Image for {{ listing.title }}" />
+        </div>
+        {% endif %}
+
+        <div class="listing-content"> {{listing.description}} </div>
+
+
+
+        <div class="listing-price" style="font-size: 30px">Current Bid: ${{current_bid.amount}}</div>
+
+    </div>
+        </a>
+    {% endfor %}
+{% endblock %}
