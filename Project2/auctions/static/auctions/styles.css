@@ -62,6 +62,8 @@ box-shadow: 0 3px 20px rgba(255,255,255,0.2);
 
 }
 
+.nav-item {
+font-size: 22px;}
 .watch-listing-image img {
 max-height: 200px;
 max-width: 200px;
@@ -93,12 +95,12 @@ max-width: 90%;
 min-width: 200px; }
 
 .grid-item {
-    width: calc(33.3% - 20px);
+    width: calc(20% - 20px);
     margin: 10px;
     background-color: var(--background-color);
     padding: 10px;
     color: white;
-    box-shadow: 0 3px 20px rgba(255,255,255,0.2);
+    box-shadow: var(--box-shadow);
     font-size: 18px;
     }
 .grid-item .listing-content {

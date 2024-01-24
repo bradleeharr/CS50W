@@ -10,6 +10,8 @@ header {
   background-color: var(--accent-color);
   color: var(--text-color);
   padding: 20px 0px 0px 0px;
+      box-shadow: var(--box-shadow);
+
 }
 
 .flex-nav {
