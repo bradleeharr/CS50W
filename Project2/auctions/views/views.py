@@ -27,7 +27,7 @@ def new_bid(request, listing_title):
         if amount <= highest_bid.amount:
             return render(request, f"auctions/listing.html", {
                 "listing": listing,
-                "message": "New bid must be greater than current bid."
+                "bid_message": "New bid must be greater than current bid."
             })
 
         try:
@@ -37,12 +37,12 @@ def new_bid(request, listing_title):
             traceback.print_exc()
             return render(request, "auctions/listing.html", {
                 "listing": listing,
-                "message": "An error occurred. Please try again."
+                "bid_message": "An error occurred. Please try again."
             })
 
         return render(request, "auctions/listing.html", {
             "listing": listing,
-            "message": "Bid submitted."
+            "bid_message": "Bid submitted."
         })
     else:
         return render(request, f"auctions/listing.html")
@@ -80,29 +80,31 @@ def add_to_watchlist(request, listing_title):
     if request.method == "POST":
         listing = AuctionListing.objects.get(title=listing_title)
         try:
-            new_watchlist_item = WatchlistItem(user=request.user, listing=listing)
-            new_watchlist_item.save()
+            new_watchlist_item, created = WatchlistItem.objects.get_or_create(user=request.user, listing=listing)
+            if created:
+                message = "Added to watchlist."
+            else:
+                message = "This item is already in your watchlist."
             return render(request, "auctions/listing.html", {
-                "listing" : listing,
-                "message": "Added to watchlist."
+                "listing": listing,
+                "add_to_watchlist_message": message
             })
             pass
         except IntegrityError as e:
             traceback.print_exc()
             return render(request, "auctions/listing.html", {
                 "listing": listing,
-                "message": "An error occurred. Please try again."
+                "add_to_watchlist_message": "An error occurred. Please try again."
             })
     else:
         return render(request, "auctions/listing.html", {
-            "message": "An error occurred. Please try again."
+            "add_to_watchlist_message": "An error occurred. Please try again."
         })
     pass
 
 
 def watchlist(request):
     listings_with_bids = []
-    listings = AuctionListing.objects.all()
     watchlist_items = WatchlistItem.objects.filter(user=request.user)
     for item in watchlist_items:
         listing = item.listing

@@ -2,25 +2,31 @@
 
 {% block body %}
 
+
+
+    {% if user.is_authenticated %}
+
     <div class="top-buttons">
-    <!-- Add to Watchlist Button -->
-    {% if user.is_authenticated %}
-    <form action ="{% url 'add_to_watchlist' listing_title=listing.title %}" method="post" >
-    {% csrf_token %}
-            <input class="btn btn-primary" type="submit" value="Add to Watchlist">
-    </form>
-    {% endif %}
+        <div class="form-container" id="addWatchlistPopup">
 
-    <!-- Remove Listing Button -->
-    {% if user.is_authenticated %}
-    <form action="{% url 'remove_listing' listing_title=listing.title %}" method="post">
-    {% csrf_token %}
-        <input class="btn btn-primary" type="submit" value="Remove Listing">
-    </form>
-    {% endif %}
+            <!-- Add to Watchlist Button -->
+            <form action ="{% url 'add_to_watchlist' listing_title=listing.title %}" method="post" class="form-button">
+            {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="Add to Watchlist">
+            </form>
+
+            <!-- Remove Listing Button -->
+            <form action="{% url 'remove_listing' listing_title=listing.title %}" method="post" class="form-button">
+            {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="Remove Listing">
+            </form>
+        </div>
     </div>
+    {% endif %}
 
-    <h2>{{listing.title}}</h2>
+    <div class="listing-listing-container">
+        <h2 class="listing-listing-title">{{listing.title}}</h2>
+    </div>
 
     <!-- Display Image -->
     {% if listing.image  %}
@@ -29,34 +35,46 @@
         </div>
     {% endif %}
 
-    {{listing.description}}
+    <div class="listing-listing-container">
+        <div class="listing-listing-description">
+            {{listing.description}}
+        </div>
+    </div>
 
     <!-- Add Bid -->
     {% if user.is_authenticated %}
-    <h3> Add Bid </h3>
-    <h1> {{ message }}</h1>
-    <form action="{% url 'new_bid' listing_title=listing.title %}" method="post">
-    {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" type="number" step=".01" name="amount" placeholder="Amount">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Submit Bid">
-    </form>
-    {% endif %}
+    <div class="forms-container">
 
-    <!-- Add Comment -->
-    {% if user.is_authenticated %}
-    <h3> Add Comment </h3>
-    <form action="{% url 'new_comment' listing_title=listing.title %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" type="text" name="title" placeholder="Title">
+        <!-- Add Comment -->
+        <div class="form-container" id="addComment">
+
+            <h3> Add Comment </h3>
+            <form action="{% url 'new_comment' listing_title=listing.title %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" type="text" name="title" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <textarea id="content" name="content" rows="5" cols="33"> </textarea>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit Comment">
+            </form>
         </div>
-        <div class="form-group">
-            <textarea id="content" name="content" rows="5" cols="33"> </textarea>
+
+        <div class="form-container" id="addBid">
+            <h3> Add Bid </h3>
+            <p> {{ bid_message }}</p>
+            <form action="{% url 'new_bid' listing_title=listing.title %}" method="post">
+            {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" type="number" step=".01" name="amount" placeholder="0.00">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit Bid">
+            </form>
         </div>
-        <input class="btn btn-primary" type="submit" value="Submit Comment">
-    </form>
+
+
+    </div>
     {% endif %}
 
 
