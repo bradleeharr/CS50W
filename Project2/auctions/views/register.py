@@ -1,9 +1,10 @@
 from django.contrib.auth import login
-from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+
+from auctions.models import User
 
 
 def register(request):

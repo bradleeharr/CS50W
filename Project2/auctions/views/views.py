@@ -47,13 +47,46 @@ def new_bid(request, listing_title):
     else:
         return render(request, f"auctions/listing.html")
 
-
+@login_required()
 def new_comment(request, listing_title):
     pass
 
-
+@login_required()
 def remove_listing(request, listing_title):
+    if request.method == "POST":
+        listing = AuctionListing.objects.get(title=listing_title)
+        if listing.user == request.user:
+            try:
+                listing.delete()
+                return HttpResponseRedirect(reverse("index"))
+            except IntegrityError as e:
+                traceback.print_exc()
+                return render(request, "auctions/listing.html", {
+                    "listing": listing,
+                    "message": "An error occurred. Please try again."
+                })
+        else:
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "message": "You must be the owner of this listing to delete the listing."
+            })
+    else:
+        return HttpResponseRedirect(reverse("index"))
     pass
 
+@login_required()
 def add_to_watchlist(request, listing_title):
+    if request.method == "POST":
+        listing = AuctionListing.objects.get(title=listing_title)
+        try:
+        except IntegrityError as e:
+            traceback.print_exc()
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "message": "An error occurred. Please try again."
+            })
+    else:
+        return render(request, "auctions/listing.html", {
+            "message": "An error occurred. Please try again."
+        })
     pass
