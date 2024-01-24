@@ -7,8 +7,20 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
         <link href="{% static 'auctions/hero.css' %}" rel="stylesheet">
+        <link href="{% static 'auctions/listing.css' %}" rel="stylesheet">
 
         <link rel="icon" href="{% static 'auctions/favicon.ico' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var msnry = new Masonry('#masonry-grid', {
+                // options
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-item', // Can be a percentage or a fixed value
+                percentPosition: true // Use percentage widths for columnWidth
+            });
+        });
+        </script>
 
     </head>
     <body>

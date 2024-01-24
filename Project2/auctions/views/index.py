@@ -8,7 +8,6 @@ def index(request):
     listings = AuctionListing.objects.all()
     for listing in listings:
         highest_bid = Bid.objects.filter(listing=listing)
-        print(highest_bid)
         highest_bid = highest_bid.order_by('-amount').first()
         listings_with_bids.append((listing, highest_bid))
     return render(request, "auctions/index.html", {

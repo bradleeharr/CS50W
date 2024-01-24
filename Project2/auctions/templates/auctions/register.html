@@ -1,14 +1,16 @@
 
 {% extends "auctions/layout.html" %}
 
-
 {% block body %}
 
-    <h2>Register</h2>
+    <h2 class="text-over-body">Register</h2>
 
     {% if message %}
         <div class="message">{{ message }}</div>
     {% endif %}
+    <div class="forms-container">
+        <div class="form-container">
+
 
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
@@ -27,6 +29,9 @@
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
     <br/>
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+             </div>
+    </div>
+
+    <p class="text-over-body"> Already have an account? <a href="{% url 'login' %}">Log In here.</a> </p>
 
 {% endblock %}

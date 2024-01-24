@@ -1,9 +1,3 @@
-/* */
-:root {
---background-color: #111;
---text-color: #fff;
---blend-mode: darken;
-}
 
 /*
 :root {
@@ -13,7 +7,7 @@
 } */
 
 header {
-  background-color: var(--background-color);
+  background-color: var(--accent-color);
   color: var(--text-color);
   padding: 20px 0px 0px 0px;
 }

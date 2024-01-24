@@ -1,26 +1,32 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
+<!-- TODO: If the item is already on the watchlist, the user should be able to remove it. -->
+<!-- TODO: The user should have the ability to “close” the auction makes the highest bidder the winner and listing no longer active. -->
+<!-- TODO: If a user is signed in on a closed listing page, and the user has won that auction, the page should say so. -->
+<!-- TODO: Add comments to listing page -->
+<!-- TODO: The listing page should display all comments that have been made on the listing.-->
+<!-- TODO: Categories: Users should be able to visit a page that displays a list of all listing categories. -->
     <h2>Active Watchlist Listings</h2>
     {% for listing, current_bid in listings %}
     <a href="{% url 'listing' listing_title=listing.title %}" style="text-decoration: none">
     <div class="listing">
-        <div class="listing-header">
-            <div class="listing-title" style="font-size: 30px"> {{listing.title}} </div>
-            <div class="listing-user"> By: {{listing.user}} </div>
-        </div>
-
         {% if listing.image  %}
-        <div class="listing-image">
-                <img src="{{ listing.image.url }}" alt="Image for {{ listing.title }}" />
+        <div class="watch-listing-left">
+            <div class="watch-listing-image">
+                    <img src="{{ listing.image.url }}" alt="Image for {{ listing.title }}" />
+            </div>
+            <div class="listing-header">
+                <div class="listing-title" style="font-size: 30px"> {{listing.title}} </div>
+                <div class="listing-user"> By: {{listing.user}} </div>
+            </div>
         </div>
+
         {% endif %}
-
-        <div class="listing-content"> {{listing.description}} </div>
-
-
-
-        <div class="listing-price" style="font-size: 30px">Current Bid: ${{current_bid.amount}}</div>
+        <div class="watch-listing-content">
+            <div class="listing-description"> {{listing.description}} </div>
+            <div class="listing-price" style="font-size: 30px">Current Bid: ${{current_bid.amount}}</div>
+        </div>
 
     </div>
         </a>
