@@ -1,0 +1,6 @@
+.venv/
+.vscode/
+db.sqlite3
+commerce/__pycache__/
+auctions/migrations/__pycache__/
+auctions/__pycache__/
