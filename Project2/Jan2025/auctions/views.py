@@ -3,9 +3,10 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django import forms
 
 from .models import User
-
+from .models import AuctionListing
 
 def index(request):
     return render(request, "auctions/index.html")
@@ -62,6 +63,30 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+
+class NewTaskForm(forms.Form):
+    listing_name = forms.CharField(label="Listing Name")
+    description = forms.CharField(label="Listing Description")
+
 def new_listing(request):
-    return render(request, "auctions/new-listing.html")
-    pass
+    if request.method == "POST":
+        username = request.POST["username"]
+        listing_name = request.POST["listing_name"]
+        description = request.POST["description"]
+
+        try:
+            auction_listing = AuctionListing.objects.create(username, listing_name, description)
+            auction_listing.save()
+        except IntegrityError:
+            return render(request, "auctions/new_listing.html", {
+                "message": "Integrity Error."
+            })
+
+        return render(request, "auctions/new_listing.html", {
+            "form": NewTaskForm(),
+            "message": "POST Received on Server."
+        })
+    else:
+        return render(request, "auctions/new_listing.html", {
+            "form": NewTaskForm()
+        })

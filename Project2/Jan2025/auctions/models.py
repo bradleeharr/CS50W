@@ -10,14 +10,15 @@ class User(AbstractUser):
     # List of active bids
     pass
 
-class AuctionListing():
-    # title
-    # description
-    # current price
-    # photo (if exists)
-    pass
+class AuctionListing(models.Model):
+    post_date = models.DateField() 
+    end_date = models.DateField()
+    title = models.TextField()
+    description = models.TextField()
+    photo = models.ImageField(upload_to='uploads/%Y/%m/%d/')
 
 class Bid():
+    price = models.DecimalField()
     pass
 
 class Comment():
