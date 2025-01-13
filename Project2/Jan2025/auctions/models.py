@@ -11,17 +11,17 @@ class User(AbstractUser):
     pass
 
 class AuctionListing(models.Model):
-    post_date = models.DateField() 
-    end_date = models.DateField()
-    title = models.TextField()
+    username = models.CharField(max_length=255)
+    post_date = models.DateTimeField() 
+    end_date = models.DateTimeField()
+    listing_name = models.TextField()
     description = models.TextField()
     photo = models.ImageField(upload_to='uploads/%Y/%m/%d/')
 
-class Bid():
-    price = models.DecimalField()
-    pass
+class Bid(models.Model):
+    price = models.DecimalField(decimal_places=2, max_digits=9)
 
-class Comment():
+class Comment(models.Model):
     pass
 
 

@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -64,29 +66,43 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
-class NewTaskForm(forms.Form):
+class NewListingForm(forms.Form):
     listing_name = forms.CharField(label="Listing Name")
-    description = forms.CharField(label="Listing Description")
+    description = forms.CharField(widget=forms.Textarea)
+    end_date = forms.DateTimeField(initial=datetime.date.today() + datetime.timedelta(days=1) )
+    bid = forms.DecimalField(label="Starting Bid", initial=1.00)
+    photo = forms.ImageField(required=False)
+
 
 def new_listing(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        username = str(request.user)
+        post_date = datetime.datetime.now()
         listing_name = request.POST["listing_name"]
+        end_date = request.POST["end_date"] 
         description = request.POST["description"]
+        # photo = models.ImageField(upload_to='uploads/%Y/%m/%d/')
 
         try:
-            auction_listing = AuctionListing.objects.create(username, listing_name, description)
+            auction_listing = AuctionListing.objects.create(
+                username = username,
+                post_date = post_date,
+                end_date = end_date,
+                listing_name = listing_name,
+                description = description,
+            )
             auction_listing.save()
-        except IntegrityError:
+        except IntegrityError as e:
             return render(request, "auctions/new_listing.html", {
-                "message": "Integrity Error."
+                "form": NewListingForm(),
+                "message": f"Integrity Error {e}."
             })
 
         return render(request, "auctions/new_listing.html", {
-            "form": NewTaskForm(),
+            "form": NewListingForm(),
             "message": "POST Received on Server."
         })
     else:
         return render(request, "auctions/new_listing.html", {
-            "form": NewTaskForm()
+            "form": NewListingForm()
         })

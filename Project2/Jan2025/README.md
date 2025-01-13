@@ -15,3 +15,13 @@
 
 5. Run the server
     * `python manage.py runserver`
+
+
+### Admin
+
+* Create an admin account
+    * `python manage.py creasuperuser`
+    * Enter username
+    * Enter email
+    * Enter password
+    
