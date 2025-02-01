@@ -20,7 +20,7 @@
 ### Admin
 
 * Create an admin account
-    * `python manage.py creasuperuser`
+    * `python manage.py createsuperuser`
     * Enter username
     * Enter email
     * Enter password
