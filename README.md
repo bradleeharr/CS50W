@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This repository contains my personal attempts at solutions for the projects assigned in CS50's web course, also known as 'Web Programming with Python and JavaScript'. 
+This repository contains my personal solutions for the projects assigned in CS50's web course, also known as 'Web Programming with Python and JavaScript'. 
 
 ## Projects Overview
 
